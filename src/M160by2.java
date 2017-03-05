@@ -45,17 +45,10 @@ public class M160by2 {
         form.setTextField("username",username);
         form.setPassword("password",Password);
         form.submit();
-        if(agent.doc.innerHTML().contains("Hi ")){
-            System.out.println("Login successful");
-        }else{
-            System.out.println("Login Unsuccessful");
-        }
 
         Token=agent.getLocation().substring(agent.getLocation().indexOf("?id=")+4);
-//        System.out.println("Token is"+Token);
         agent.visit("http://www.160by2.com/SendSMS?id="+Token);
         sms=agent.doc.getForm(0);
-//        System.out.println(sms.getElement().innerHTML());
     }
 
     /**
@@ -74,12 +67,6 @@ public class M160by2 {
         sms.setAction("http://www.160by2.com/"+sms.getElement().findFirst("<input type=\"hidden\" id=\"fkapps\"").getAt("value"));
         sms.submit();
         System.out.println(agent.doc.innerHTML());
-
-        if (agent.doc.innerHTML().contains("Your ")){
-            System.out.println("Message has been submitted for number "+ Phone_No);
-        }else{
-            System.out.println("Message hasnt been submitted for number "+Phone_No);
-        }
     }
 
 }
